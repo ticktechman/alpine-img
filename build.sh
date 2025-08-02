@@ -11,8 +11,8 @@
 set -e
 
 download_img() {
-  # wget -O alpine.qcow2 https://dl-cdn.alpinelinux.org/alpine/v3.22/releases/cloud/nocloud_alpine-3.22.1-aarch64-uefi-cloudinit-r0.qcow2
-  # qemu-img convert -f qcow2 -O raw alpine.qcow2 alpine.img
+  wget -O alpine.qcow2 https://dl-cdn.alpinelinux.org/alpine/v3.22/releases/cloud/nocloud_alpine-3.22.1-aarch64-uefi-cloudinit-r0.qcow2
+  qemu-img convert -f qcow2 -O raw alpine.qcow2 alpine.img
   truncate -s 10G alpine.img
   fdisk ./alpine.img <<EOF
 p
@@ -27,7 +27,7 @@ EOF
 patch_img() {
   sudo losetup -fP ./alpine.img
   sleep 0.5
-  local dev="$(losetup -l | grep alpine.img | cut -f1 -d' ')"
+  local dev="$(losetup -l | grep ${PWD}/alpine.img | cut -f1 -d' ')"
   [[ ! -d 'efi' ]] && mkdir efi
   [[ ! -d 'linux' ]] && mkdir linux
   sudo mount "${dev}p1" efi/

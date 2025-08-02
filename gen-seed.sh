@@ -10,7 +10,7 @@
 
 # === CONFIG ===
 USER_NAME=${1:-cloud}
-HOST_NAME=${2:alpine-vm}
+HOST_NAME=${2:-alpine-vm}
 SSH_KEY=${3:-"ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINorAKTkV9MgQl7w8OQq7tyL71i+vRbAi2fhxhWihwdB ticktech@ubuntu"}
 
 # Create temporary working directory
@@ -26,7 +26,7 @@ cat >"$CIDATADIR/user-data" <<EOF
 #cloud-config
 packages:
   - sudo
-hostname: $HOST_NAME
+hostname: "$HOST_NAME"
 users:
   - name: $USER_NAME
     shell: /bin/sh
