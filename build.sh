@@ -38,6 +38,14 @@ patch_img() {
   sudo losetup -d "${dev}"
 }
 
+pack() {
+  ./gen-seed.sh
+  [[ -d alpine-img ]] || mkdir alpine-img
+  mv alpine.img seed.iso ./alpine-img/
+  tar zcf alpine-img.tar.gz alpine-img
+}
+
 download_img
 patch_img
+pack
 ###############################################################################
