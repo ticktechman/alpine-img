@@ -41,7 +41,7 @@ patch_img() {
 pack() {
   ./gen-seed.sh
   [[ -d alpine-img ]] || mkdir alpine-img
-  mv alpine.img seed.iso ./alpine-img/
+  mv alpine.img seed.iso alpine.json ./alpine-img/
   tar zcf alpine-img.tar.gz alpine-img
 }
 
