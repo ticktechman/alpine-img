@@ -1,0 +1,11 @@
+{
+  "cpus": 2,
+  "memory": 2048,
+  "kernel": "",
+  "initrd": "",
+  "storage": ["root.img", "seed.iso"],
+  "cmdline": "",
+  "shared": ["shared"],
+  "network": true,
+  "uefi": true
+}
